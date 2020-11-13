@@ -1,0 +1,19 @@
+{
+ "name": "danbot-status",
+ "version": "0.0.0",
+ "description": "Fetch the status of DanBot-Hosting",
+ "main": "src/index.js",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/RobinSchapendonk/danbot-status.git"
+ },
+ "author": "Robin Schapendonk",
+ "license": "MIT",
+ "bugs": {
+  "url": "https://github.com/RobinSchapendonk/danbot-status/issues"
+ },
+ "homepage": "https://github.com/RobinSchapendonk/danbot-status#readme",
+ "dependencies": {
+  "node-fetch": "^2.6.1"
+ }
+}
