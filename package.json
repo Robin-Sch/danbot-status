@@ -1,6 +1,6 @@
 {
  "name": "danbot-status",
- "version": "0.0.0",
+ "version": "0.0.1",
  "description": "Fetch the status of DanBot-Hosting",
  "main": "src/index.js",
  "repository": {
