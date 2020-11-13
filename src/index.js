@@ -48,7 +48,7 @@ const getNodeStatus = (node) => {
             const nodes = Object.keys(res.nodestatus);
             if (!node) resolve(res.nodestatus);
             else if (typeof node == 'number') node = `Node` + node;
-            else if (typeof node == 'string' && node.startsWith('node')) node = node.charAt(0).toUpperCase() + node.slice(1);
+            else if (typeof node == 'string' && node.toLowerCase().startsWith('node')) node = node.charAt(0).toUpperCase() + node.slice(1);
             else reject('Invalid node number!');
             if (!nodes.includes(node)) return reject('Invalid node number!');
             resolve(res.nodestatus[node]);
