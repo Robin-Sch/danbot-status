@@ -26,21 +26,8 @@ const getNodesStatus = async () => {
     });
 };
 
-const getMiscStatus = async () => {
-    return new Promise((resolve, reject) => {
-        fetch('https://danbot.host/nodeStatus').then(res => {
-            if(res.status == 200) return res.json();
-            else reject('Error when fetching, please try again!');
-        }).then(res => {
-            resolve(res.misc);
-        }).catch(err => {
-            reject(err);
-        });
-    });
-};
-
 const getNodeStatus = (node) => {
-    return new Promise((resolve, reject) => {
+    return new Promise(async (resolve, reject) => {
         fetch('https://danbot.host/nodeStatus').then(res => {
             if(res.status == 200) return res.json();
             else reject('Error when fetching, please try again!');
@@ -52,6 +39,19 @@ const getNodeStatus = (node) => {
             else reject('Invalid node number!');
             if (!nodes.includes(node)) return reject('Invalid node number!');
             resolve(res.nodestatus[node]);
+        }).catch(err => {
+            reject(err);
+        });
+    });
+};
+
+const getMiscStatus = async () => {
+    return new Promise((resolve, reject) => {
+        fetch('https://danbot.host/nodeStatus').then(res => {
+            if(res.status == 200) return res.json();
+            else reject('Error when fetching, please try again!');
+        }).then(res => {
+            resolve(res.misc);
         }).catch(err => {
             reject(err);
         });
@@ -79,4 +79,37 @@ const getLavaStatus = (node) => {
     });
 };
 
-module.exports = { getAllStatus, getNodesStatus, getMiscStatus, getNodeStatus, getLavaStatus };
+const getSysInfos = () => {
+    return new Promise((resolve, reject) => {
+        fetch('https://danbot.host/sysinfo').then(res => {
+            if(res.status == 200) return res.json();
+            else reject('Error when fetching, please try again!');
+        }).then(res => {
+            resolve(res);
+        }).catch(err => {
+            reject(err);
+        });
+    });
+};
+
+const getSysInfo = (node) => {
+    return new Promise((resolve, reject) => {
+        fetch('https://danbot.host/sysinfo').then(res => {
+            if(res.status == 200) return res.json();
+            else reject('Error when fetching, please try again!');
+        }).then(res => {
+            console.log(res);
+            const nodes = Object.keys(res);
+            if (!node) resolve(res);
+            else if (typeof node == 'number') node = `Node` + node;
+            else if (typeof node == 'string' && node.toLowerCase().startsWith('node')) node = node.charAt(0).toUpperCase() + node.slice(1);
+            else reject('Invalid node number!');
+            if (!nodes.includes(node)) return reject('Invalid node number!');
+            resolve(res[node]);
+        }).catch(err => {
+            reject(err);
+        });
+    });
+};
+
+module.exports = { getAllStatus, getNodesStatus, getNodeStatus, getMiscStatus, getLavaStatus, getSysInfos, getSysInfo };
