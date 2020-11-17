@@ -12,7 +12,8 @@ const {
     getMiscStatus,
     getLavaStatus, 
     getSysInfos, 
-    getSysInfo 
+    getSysInfo,
+    getLeaderBoard
 } = require('danbot-status');
 
 // Fetch all statuses
@@ -80,6 +81,20 @@ getSysInfos().then(res => {
 
 // Fetch node 1 stats
 getSysInfo(1).then(res => {
+    console.log(res);
+}).catch(err => {
+    console.log(err);
+});
+
+// Fetch leaderboard
+getLeaderBoard().then(res => {
+    console.log(res);
+}).catch(err => {
+    console.log(err);
+});
+
+// Fetch specific user leaderboard
+getLeaderBoard('userID').then(res => {
     console.log(res);
 }).catch(err => {
     console.log(err);

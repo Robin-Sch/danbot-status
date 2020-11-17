@@ -1,3 +1,6 @@
+# 0.0.4
+Added `getLeaderBoard`
+
 # 0.0.3
 Added `getSysInfo` and `getSysInfos`
 

@@ -112,4 +112,18 @@ const getSysInfo = (node) => {
     });
 };
 
-module.exports = { getAllStatus, getNodesStatus, getNodeStatus, getMiscStatus, getLavaStatus, getSysInfos, getSysInfo };
+const getLeaderBoard = (userID = null) => {
+    return new Promise((resolve, reject) => {
+        const extra = userID ? `?id=${userID}` : '';
+        fetch('https://api.danbot.host/leaderboard' + extra).then(res => {
+            if(res.status == 200) return res.json();
+            else reject('Error when fetching, please try again!');
+        }).then(res => {
+            resolve(res);
+        }).catch(err => {
+            reject(err);
+        });
+    });
+};
+
+module.exports = { getAllStatus, getNodesStatus, getNodeStatus, getMiscStatus, getLavaStatus, getSysInfos, getSysInfo, getLeaderBoard };
