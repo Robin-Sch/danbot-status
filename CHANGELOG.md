@@ -1,3 +1,6 @@
+# 0.0.5
+Added JSDocs
+
 # 0.0.4
 Added `getLeaderBoard`
 
